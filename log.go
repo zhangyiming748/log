@@ -9,6 +9,7 @@ import (
 var (
 	Info  *log.Logger // 仅打印到屏幕
 	Debug *log.Logger // 打印屏幕并保存到文件
+	Warn  *log.Logger // 出现一般性错误,打印屏幕并保存到文件
 )
 
 func init() {
@@ -19,5 +20,5 @@ func init() {
 	}
 	Info = log.New(os.Stdout, "INFO:", log.Ltime)
 	Debug = log.New(io.MultiWriter(logf, os.Stdout), "DEBUG:", log.Lshortfile)
-
+	Warn = log.New(io.MultiWriter(logf, os.Stdout), "DEBUG:", log.Ltime|log.Lshortfile)
 }
