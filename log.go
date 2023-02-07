@@ -20,5 +20,5 @@ func init() {
 	}
 	Info = log.New(os.Stdout, "INFO:", log.Ltime)
 	Debug = log.New(io.MultiWriter(logf, os.Stdout), "DEBUG:", log.Lshortfile)
-	Warn = log.New(io.MultiWriter(logf, os.Stdout), "WARN:", log.Ltime|log.Lshortfile)
+	Warn = log.New(io.MultiWriter(logf, os.Stdout), "WARN:", log.Ltime|log.Llongfile)
 }
