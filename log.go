@@ -15,14 +15,11 @@ var (
 
 func init() {
 	file := "program.log"
-	if FileExist(file){
-		os.Remove(file)
-	}
-	logf, err := os.OpenFile(file, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0644)
+	logf, err := os.OpenFile(file, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0777)
 	if err != nil {
 		log.Println("打开日志文件错误")
 	}
-	defer logf.Close()//如果不关闭可能造成内存泄露
+	defer logf.Close() //如果不关闭可能造成内存泄露
 	Info = log.New(os.Stdout, "INFO:", log.Ltime)
 	Debug = log.New(io.MultiWriter(logf, os.Stdout), "DEBUG:", log.Lshortfile)
 	Warn = log.New(io.MultiWriter(logf, os.Stdout), "WARN:", log.Ltime|log.Llongfile)
